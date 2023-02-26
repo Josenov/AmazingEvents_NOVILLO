@@ -7,9 +7,8 @@
 }
 
 header{
-    gap: 16rem;
     min-height: 8vh;
-    width: 100%;
+    
 }
 
 
@@ -20,8 +19,10 @@ body{
 }
 
 main{
-    
+    display: flex;
     min-height: 90vh;
+    width: 100%;
+    flex-direction: column;
     
 }
 
@@ -82,16 +83,14 @@ footer{
     
     
 } */
-thead{
-    font-weight: bolder;
-}
+
 
 .div-table{
     display: flex;
-    width: 70%;
-    flex-flow: column wrap;
-    margin-left: 200px;
-    padding-top: 20px;
+    width: 100%;
+    flex-direction: column;
+    padding: 30px;
+    
 }
 
 
@@ -116,18 +115,28 @@ thead{
 
 /*contact form*/
 .contact-form{
+    color: white;
     background-color: #df3383;
     display: flex;
     flex-direction: column;
-    width:100%;
-    margin-top: 30px;
+    width:90%;
+    margin:auto;
     align-items: center;
-    padding-top: 10px;
+    padding:10px;
+    background-image:url(../assets/img/contact-image.jpg);
+    background-size:contain;
+    border-radius: 15px;
+    
+    
 }
 .btn{
     align-self:center;
     margin: 10px;
 }
+
+
+
+
 
 /*footer*/
 .container{
