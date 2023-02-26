@@ -7,8 +7,9 @@
 }
 
 header{
+    gap: 16rem;
     min-height: 8vh;
-    gap: 16rem;   
+    width: 100%;
 }
 
 
@@ -25,13 +26,11 @@ main{
 }
 
 footer{
-    min-height: 7vh;
-    background-color: #FFD7EA;
+    min-height: 10vh;
+    background-color: #df3383;
 }
 
-.nav-bar-items{
-    display:flex;
-}
+
 
 
 .carousel-item{
@@ -75,28 +74,68 @@ footer{
 }
 
 /*table stats*/
-.table{
+/* .table{
+    display: flex;
     border: 0.5px solid black;
     margin: 10px;
-    width: 900px;
     
+    
+    
+} */
+thead{
+    font-weight: bolder;
+}
+
+.div-table{
+    display: flex;
+    width: 70%;
+    flex-flow: column wrap;
+    margin-left: 200px;
+    padding-top: 20px;
+}
+
+
+
+/* details */
+.details{
+    display:flex;
+    justify-content:center;
+    padding-top: 70px;
     
 }
 
-/*contact form*/
-.mb-3{
-    display: flex;
+
+.card-body{
+    display:flex;
     align-items: center;
-    
-    
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+
+/*contact form*/
+.contact-form{
+    background-color: #df3383;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    margin-top: 30px;
+    align-items: center;
+    padding-top: 10px;
+}
+.btn{
+    align-self:center;
+    margin: 10px;
 }
 
 /*footer*/
 .container{
-    margin-top: 5px;
     display: flex;
     justify-content: center;
+    padding: 15px;
     align-items: flex-end;
+    height: 100%;
 }
 
 
