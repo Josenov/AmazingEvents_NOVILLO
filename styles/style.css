@@ -9,6 +9,7 @@
 header{
     min-height: 8vh;
     
+    
 }
 
 
@@ -22,7 +23,7 @@ main{
     display: flex;
     min-height: 90vh;
     width: 100%;
-    flex-direction: column;
+    flex-flow: column wrap;
     
 }
 
@@ -91,7 +92,9 @@ footer{
     flex-direction: column;
     padding: 30px;
     
+    
 }
+
 
 
 
@@ -140,12 +143,15 @@ footer{
 
 /*footer*/
 .container{
+    color: white;
     display: flex;
     justify-content: center;
     padding: 15px;
     align-items: flex-end;
     height: 100%;
 }
+
+
 
 
 
