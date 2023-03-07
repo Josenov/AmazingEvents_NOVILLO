@@ -21,9 +21,10 @@ body{
 
 main{
     display: flex;
-    min-height: 90vh;
+    min-height: 80vh;
     width: 100%;
     flex-flow: column wrap;
+    
     
 }
 
@@ -57,15 +58,15 @@ footer{
 .cards{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items:center;
     margin: 1rem;
-    gap: 1rem;
-    justify-content: center;
+    gap: 2rem;
+    justify-content:center;
 }
 
 .card-img-top{
-    width:auto;
-    height:200px;
+    
+    height: 200px;
 }
 
 
