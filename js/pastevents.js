@@ -1,38 +1,65 @@
 import data from "./amazing.js";
+import { pastEvents, drawCards, createCheckBox, checkedCards} from "./functions.js"
 
-let events = data.events;
-let date = data.currentDate
-let pastEvents = [];
-let cards = " ";
+/* let dataE = data.events; */
+let currentDate = data.currentDate;
+const divCards = document.getElementById('divCardsP');
+
+let pEvents = pastEvents(data.events, data.currentDate);
+drawCards(pEvents, divCards);
+console.log(pEvents)
 
 
-//A traves de un for recorro los eventos y filtro las fechas para luego guardarlas en un array
-for (let i = 0; i < events.length; i++) {
-    if (events[i].date < date) {
-        pastEvents.push(events[i]);
+/* drawCards(pastEvents(data.events, currentDate), divCards); */
+
+
+//////////Dinamic Checkboxes///////////
+const checkContainer = document.getElementById('checkboxesContainer')
+const input = document.querySelector('#search-bar')
+
+
+input.addEventListener('input',superFilter)
+
+checkContainer.addEventListener('change',superFilter)
+
+
+
+createCheckBox(pEvents, checkContainer);
+
+checkedCards(pEvents, divCards);
+
+textFilter(pEvents, input.value);
+
+categoryFilter(pEvents);
+
+superFilter();
+
+
+
+function categoryFilter(array){
+    let checkboxes = document.querySelectorAll("input[type='checkbox']")
+    let arrayChecks = Array.from(checkboxes)
+    let arrayChecksChecked = arrayChecks.filter(check => check.checked)
+    let arrayChecksCheckedValues = arrayChecksChecked.map(checkChecked => checkChecked.value)
+    console.log(arrayChecksCheckedValues);
+    let arrayFiltered = array.filter(element => arrayChecksCheckedValues.includes(element.category))
+    if(arrayChecksChecked.length > 0){
+        return arrayFiltered
     }
-
+    return array
 }
 
-//Aca usando metodos de DOM y con un for uso el array filtrado para generar cards por fechas almacenadas
-const divCards = document.getElementById('divCards')
-
-for (let i = 0; i < pastEvents.length; i++) {
-    cards += 
-    `<div class="card" style="width: 18rem;">
-        <img src="${pastEvents[i].image}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">${pastEvents[i].name}</h5>
-            <p class="card-text">${pastEvents[i].description}</p>
-            <a href="./details.html" class="btn btn-primary">Details</a>
-        </div>
-    </div>`
-
-
+function superFilter(){
+    let filterA = textFilter(pEvents, input.value)
+    let filterB = categoryFilter(filterA)
+    checkedCards(filterB, divCards)
 }
 
-divCards.innerHTML = cards
 
+function textFilter(array,text){
+    let arrayFiltered = array.filter(element => element.name.toLowerCase().includes(text.toLowerCase()))
+    return arrayFiltered
+}
 
 
 

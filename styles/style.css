@@ -29,6 +29,8 @@ main{
 }
 
 footer{
+    display: flex;
+    flex-wrap: wrap;
     min-height: 10vh;
     background-color: #df3383;
 }
@@ -37,9 +39,10 @@ footer{
 
 
 .carousel-item{
-    height:480px;
+    height:350px;
     width:100%;
-    object-fit: scale-down;
+    object-fit: contain;
+    
     
     
 }
@@ -48,32 +51,42 @@ footer{
 
 
 
-/*search-bar*/
-.search{
-    display:flex;
-    margin-right:10px;
-}
+
 
 /*cards*/
 .cards{
     display: flex;
     flex-wrap: wrap;
-    align-items:center;
     margin: 1rem;
     gap: 2rem;
     justify-content:center;
+    
 }
 
 .card-img-top{
-    
+    object-fit: cover;
     height: 200px;
 }
 
 
 
 /*checkbox*/
-.d-flex{
-    gap: 1rem;
+#checkboxesContainer{
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    
+}
+
+/*search-bar*/
+.search{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+
+    
 }
 
 /*table stats*/
@@ -100,12 +113,21 @@ footer{
 
 
 /* details */
-.details{
+#details{
     display:flex;
     justify-content:center;
-    padding-top: 70px;
+    padding-top: 100px;
     
 }
+
+
+#img-detail{
+    object-fit: cover;
+    padding-top:50px;
+    padding-left:10px;
+    border-radius: 15px 15px 15px;
+}
+
 
 
 .card-body{
@@ -150,6 +172,7 @@ footer{
     padding: 15px;
     align-items: flex-end;
     height: 100%;
+    gap: 1rem;
 }
 
 
