@@ -79,3 +79,166 @@ export function checkedCards(array, container){
 
 
 
+
+
+//////API Async Function///////
+
+let urlApi = "../assets/API/amazing.json"
+
+
+export async function loadDataFromApi(){
+
+    try{
+    const response = await fetch(urlApi)
+    const data = await response.json()
+    return data
+
+    }
+    catch(error){
+        console.log(error)}
+    
+}
+
+export async function getDataFromApi(){
+    try{
+        const data = await loadDataFromApi();
+        const newEvents = data.events;
+        const newCurrentDate = data.currentDate;
+        return {newCurrentDate, newEvents}
+    }
+    catch(error){
+        console.log(error)}
+}
+
+
+
+
+///////Stats Functions///////
+
+
+ ////High Percentage Searcher////
+export function highPercentageEvent(arr){
+    let arrAssistance = [...arr.filter(e => e.assistance)];
+    let arrHighPercentage = [];
+    arrAssistance.forEach(e =>{
+        let percentage = ((e.assistance/e.capacity) * 100).toFixed(1)
+        arrHighPercentage.push({
+            name: e.name,
+            perc: percentage
+            }); 
+    })
+
+    let orderedResults = arrHighPercentage.sort((a,b)=>{
+
+        return b.perc - a.perc
+    })    
+    return orderedResults[0]
+    
+}
+
+////Low Percentage Searcher////
+export function lowPercentageEvent(arr){
+    let arrAssistance = [...arr.filter(e => e.assistance)];
+    let arrLowPercentage = [];
+    arrAssistance.forEach(e =>{
+        let percentage = ((e.assistance/e.capacity) * 100).toFixed(1)
+        arrLowPercentage.push({
+            name: e.name,
+            perc: percentage
+            });
+    })
+
+    let orderedResults = arrLowPercentage.sort((a,b)=>{
+
+        return a.perc - b.perc
+    }) 
+    return orderedResults[0]
+    
+}
+
+
+///High Capacity Searcher
+
+export function highCapacityEvent(arr){
+    let arrCapacity = [...arr.filter(e => e.capacity)];
+    let arrHighCapacity = [];
+    arrCapacity.forEach(e =>{
+        let capacity = e.capacity
+        arrHighCapacity.push({
+            name: e.name,
+            capac: capacity
+            });;
+        console.log(capacity)
+        
+    })
+
+    let orderedResults = arrHighCapacity.sort((a,b)=>{
+
+        return b.capac - a.capac
+    }) 
+
+    console.log(orderedResults)
+    return orderedResults[0]
+    
+}
+
+
+
+//Revenues function
+
+export function totalRevenues(arr){
+    let revenues = 0
+
+    arr.forEach(e =>{
+        let revenue = e.price * ((e.assistance ? e.assistance : e.estimate))
+        revenues += revenue;
+    })
+    console.log(revenues)
+    return revenues;
+}
+
+
+
+
+// Past & Upcoming Filter que luego usare en la funcion categoryStatistics para filtrar por fechas en la tabla
+export function arrPastEvents(arr, currentDate) {
+    const pastEvents = arr.filter((e) => e.date < currentDate)
+    return pastEvents
+}
+
+export function arrUpcomingEvents(arr, currentDate) {
+    const upcomingEvents = arr.filter((e) => e.date > currentDate)
+    return upcomingEvents
+}
+
+
+//en esta funcion uso un reduce para acumular valores y mediante el for recorrer cada categoria para ir filtrando e ir guardando en catStats, en el return puedo ordenar por ganancias o concurrencia segun se quiera mostrar en la pagina
+export function categoryStatistics(arr, categ, objProperty) {
+    let categStats = []
+    let acum = (acc, current) => acc + current
+    for (let i = 0; i < categ.length; i++) {
+        categStats[i] = {
+            category: categ[i],
+            revenue: arr.filter(e => e.category == categ[i]).map(e => (e[objProperty]) * e.price).reduce(acum, 0),
+            attendance: arr.filter(e => e.category == categ[i]).map(e => (e[objProperty] * 100) / e.capacity).reduce(acum, 0) / arr.filter(e => e.category == categ[i]).length
+        }
+    }
+    
+    //console.log(catStats)
+    return categStats.filter(e => e.attendance > 0).sort((b, a) => a.attendance - b.attendance)
+
+    
+}
+
+//funcion para dibujar las tablas
+export function drawCategoryStatistics(arr, container) {
+    let statsHtml = document.getElementById(container)
+    arr.forEach(e => {
+            statsHtml.innerHTML += `
+
+                                <td>${e.category}</td>
+                                <td>$${e.revenue}</td>
+                                <td>${e.attendance.toFixed(1)}%</td>
+                                `
+    });
+}

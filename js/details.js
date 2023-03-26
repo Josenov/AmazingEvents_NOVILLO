@@ -1,10 +1,14 @@
-import data from "./amazing.js"
+import {getDataFromApi} from "./functions.js"
 
 const queryString = location.search;
 const params = new URLSearchParams(queryString);
 const detailsId = params.get('id');
 
-let dataE = data.events;
+const data = await getDataFromApi();
+
+getDataFromApi()
+
+let dataE = data.newEvents;
 
 
 const detail = dataE.find(detail => detail._id == detailsId);

@@ -1,13 +1,14 @@
-import data from "./amazing.js";
-import { pastEvents, drawCards, createCheckBox, checkedCards} from "./functions.js"
+import { pastEvents, drawCards, createCheckBox, checkedCards, getDataFromApi} from "./functions.js"
+
+const data = await getDataFromApi();
 
 /* let dataE = data.events; */
-let currentDate = data.currentDate;
+
 const divCards = document.getElementById('divCardsP');
 
-let pEvents = pastEvents(data.events, data.currentDate);
+let pEvents = pastEvents(data.newEvents, data.newCurrentDate);
 drawCards(pEvents, divCards);
-console.log(pEvents)
+
 
 
 /* drawCards(pastEvents(data.events, currentDate), divCards); */

@@ -1,14 +1,15 @@
-import data from './amazing.js';
-import { upcomingEvents, drawCards, createCheckBox, checkedCards} from "./functions.js"
+import { upcomingEvents, drawCards, createCheckBox, checkedCards, getDataFromApi} from "./functions.js"
+
+const data = await getDataFromApi();
 
 /* let dataE = data.events; */
-let currentDate = data.currentDate;
+
 const divCards = document.getElementById('divCards');
 
 
-let uEvents = upcomingEvents(data.events, data.currentDate);
+let uEvents = upcomingEvents(data.newEvents, data.newCurrentDate);
 drawCards(uEvents, divCards);
-console.log(uEvents)
+
 
 /* drawCards(upcomingEvents(data, currentDate), divCards); */
 
@@ -50,7 +51,7 @@ function categoryFilter(array){
 }
 
 function superFilter(){
-    let filterA = textFilter(dataE, input.value)
+    let filterA = textFilter(uEvents, input.value)
     let filterB = categoryFilter(filterA)
     checkedCards(filterB, divCards)
 }

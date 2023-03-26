@@ -1,7 +1,17 @@
-import data from "./amazing.js"
-import {drawCards, createCheckBox, checkedCards} from "./functions.js"
 
-let dataE = data.events;
+import {drawCards, createCheckBox, checkedCards, getDataFromApi} from "./functions.js"
+
+const data = await getDataFromApi();
+
+
+
+
+
+
+
+let dataE = data.newEvents;
+
+console.log(dataE)
 
 ////////Calling all cards(home page)
 const divCards = document.getElementById('divCards');
@@ -32,7 +42,7 @@ categoryFilter(dataE);
 superFilter();
 
 
-
+//Con esta funcion hago el filtrado por categoria
 function categoryFilter(array){
     let checkboxes = document.querySelectorAll("input[type='checkbox']")
     let arrayChecks = Array.from(checkboxes)
@@ -46,6 +56,15 @@ function categoryFilter(array){
     return array
 }
 
+
+
+//Con esta funcion hago el filtrado por texto en el search
+function textFilter(array,text){
+    let arrayFiltered = array.filter(element => element.name.toLowerCase().includes(text.toLowerCase()))
+    return arrayFiltered
+}
+
+//Con esta funcion cruzo los filtros para que trabajen juntos
 function superFilter(){
     let filterA = textFilter(dataE, input.value)
     let filterB = categoryFilter(filterA)
@@ -53,10 +72,6 @@ function superFilter(){
 }
 
 
-function textFilter(array,text){
-    let arrayFiltered = array.filter(element => element.name.toLowerCase().includes(text.toLowerCase()))
-    return arrayFiltered
-}
 
 
 
