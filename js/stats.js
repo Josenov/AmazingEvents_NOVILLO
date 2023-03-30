@@ -5,7 +5,7 @@ const data = await getDataFromApi();
 let dataEvents = data.newEvents;
 let currentDate = data.newCurrentDate
 
-//console.log(dataEvents)
+console.log(dataEvents)
 
 
 //capturo las filas de la table donde iran los eventos de la tabla 1

@@ -7,7 +7,7 @@
 }
 
 header{
-    min-height: 8vh;
+    min-height: 10vh;
     
     
 }
@@ -61,11 +61,13 @@ footer{
     gap: 2rem;
     justify-content:center;
     
+    
 }
 
 .card-img-top{
     object-fit: cover;
-    height: 200px;
+    height: 300px;
+    
 }
 
 

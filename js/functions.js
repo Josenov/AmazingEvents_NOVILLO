@@ -118,14 +118,16 @@ export async function getDataFromApi(){
 
  ////High Percentage Searcher////
 export function highPercentageEvent(arr){
-    let arrAssistance = [...arr.filter(e => e.assistance)];
+    let arrAssistance = [...arr.filter(e => e.estimate)];
     let arrHighPercentage = [];
     arrAssistance.forEach(e =>{
-        let percentage = ((e.assistance/e.capacity) * 100).toFixed(1)
+        let percentage = ((e.estimate/e.capacity) * 100).toFixed(1)
         arrHighPercentage.push({
             name: e.name,
             perc: percentage
             }); 
+
+        console.log(percentage)    
     })
 
     let orderedResults = arrHighPercentage.sort((a,b)=>{
@@ -138,14 +140,15 @@ export function highPercentageEvent(arr){
 
 ////Low Percentage Searcher////
 export function lowPercentageEvent(arr){
-    let arrAssistance = [...arr.filter(e => e.assistance)];
+    let arrAssistance = [...arr.filter(e => e.estimate)];
     let arrLowPercentage = [];
     arrAssistance.forEach(e =>{
-        let percentage = ((e.assistance/e.capacity) * 100).toFixed(1)
+        let percentage = ((e.estimate/e.capacity) * 100).toFixed(1)
         arrLowPercentage.push({
             name: e.name,
             perc: percentage
             });
+            console.log(percentage)
     })
 
     let orderedResults = arrLowPercentage.sort((a,b)=>{
